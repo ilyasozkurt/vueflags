@@ -5,6 +5,7 @@ const path = require('path')
 
 const flagsDir = path.join(__dirname, '../flags')
 const outputFile = path.join(__dirname, '../flags/sprite.svg')
+const INDENT = '  '
 
 // Read all SVG files from flags directory
 const flagFiles = fs.readdirSync(flagsDir)
@@ -35,8 +36,8 @@ flagFiles.forEach(file => {
     const viewBox = viewBoxMatch ? viewBoxMatch[1] : '0 0 512 512'
     
     // Create a symbol element for this flag
-    spriteContent += `  <symbol id="flag-${countryCode}" viewBox="${viewBox}">
-${innerContent}  </symbol>
+    spriteContent += `${INDENT}<symbol id="flag-${countryCode}" viewBox="${viewBox}">
+${innerContent}${INDENT}</symbol>
 `
   } else {
     console.warn(`Could not parse SVG content from ${file}`)
